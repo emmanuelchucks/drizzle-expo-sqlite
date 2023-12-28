@@ -1,4 +1,3 @@
-import { useColorScheme } from "@/components/useColorScheme"
 import "@/styles/global.css"
 import FontAwesome from "@expo/vector-icons/FontAwesome"
 import {
@@ -7,17 +6,17 @@ import {
 	ThemeProvider,
 } from "@react-navigation/native"
 import { useFonts } from "expo-font"
-import { Stack } from "expo-router"
+import { Link, Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
+import { useColorScheme } from "nativewind"
 import { useEffect } from "react"
+import { Pressable } from "react-native"
 
-export {
-	// Catch any errors thrown by the Layout component.
-	ErrorBoundary,
-} from "expo-router"
+// Catch any errors thrown by the Layout component.
+export { ErrorBoundary } from "expo-router"
 
+// Ensure that reloading on `/modal` keeps a back button present.
 export const unstable_settings = {
-	// Ensure that reloading on `/modal` keeps a back button present.
 	initialRouteName: "(tabs)",
 }
 
@@ -49,13 +48,29 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
-	const colorScheme = useColorScheme()
+	const { colorScheme } = useColorScheme()
 
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
 			<Stack>
-				<Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-				<Stack.Screen name="modal" options={{ presentation: "modal" }} />
+				<Stack.Screen
+					name="index"
+					options={{
+						title: "Notes",
+						headerLargeTitle: true,
+						headerRight: () => (
+							<Link href="/modal" asChild>
+								<Pressable>
+									<FontAwesome name="plus-circle" size={25} />
+								</Pressable>
+							</Link>
+						),
+					}}
+				/>
+				<Stack.Screen
+					name="modal"
+					options={{ title: "New note", presentation: "modal" }}
+				/>
 			</Stack>
 		</ThemeProvider>
 	)
