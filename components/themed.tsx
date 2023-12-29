@@ -31,7 +31,7 @@ export function TextInput({
 }: React.ComponentProps<typeof DefaultTextInput>) {
 	return (
 		<DefaultTextInput
-			className={`text-black dark:text-white ${className}`}
+			className={`text-black dark:text-white dark:placeholder:text-white/25 ${className}`}
 			{...rest}
 		/>
 	)
