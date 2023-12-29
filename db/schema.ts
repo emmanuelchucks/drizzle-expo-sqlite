@@ -12,4 +12,3 @@ export const notes = sqliteTable("notes", {
 })
 
 export type SelectNote = typeof notes.$inferSelect
-export type InsertNote = typeof notes.$inferInsert
