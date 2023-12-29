@@ -1,10 +1,9 @@
-import { Text } from "@/components/themed"
-import { ScrollView } from "react-native"
+import { Text, View } from "@/components/themed"
 
 export default function Index() {
 	return (
-		<ScrollView>
+		<View className="flex-1 items-center justify-center">
 			<Text>Index</Text>
-		</ScrollView>
+		</View>
 	)
 }

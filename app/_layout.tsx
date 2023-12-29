@@ -1,15 +1,13 @@
+import { Icon } from "@/components/themed"
+import { useLoadAssets } from "@/hooks/use-load-assets"
 import "@/styles/global.css"
-import FontAwesome from "@expo/vector-icons/FontAwesome"
 import {
 	DarkTheme,
 	DefaultTheme,
 	ThemeProvider,
 } from "@react-navigation/native"
-import { useFonts } from "expo-font"
 import { Link, Stack } from "expo-router"
-import * as SplashScreen from "expo-splash-screen"
 import { useColorScheme } from "nativewind"
-import { useEffect } from "react"
 import { Pressable } from "react-native"
 
 // Catch any errors thrown by the Layout component.
@@ -17,37 +15,18 @@ export { ErrorBoundary } from "expo-router"
 
 // Ensure that reloading on `/modal` keeps a back button present.
 export const unstable_settings = {
-	initialRouteName: "(tabs)",
+	initialRouteName: "index",
 }
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync()
 
 export default function RootLayout() {
-	const [loaded, error] = useFonts({
-		SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
-		...FontAwesome.font,
-	})
+	const { isLoaded } = useLoadAssets()
 
-	// Expo Router uses Error Boundaries to catch errors in the navigation tree.
-	useEffect(() => {
-		if (error) throw error
-	}, [error])
+	if (!isLoaded) return null
 
-	useEffect(() => {
-		if (loaded) {
-			SplashScreen.hideAsync()
-		}
-	}, [loaded])
-
-	if (!loaded) {
-		return null
-	}
-
-	return <RootLayoutNav />
+	return <RootLayoutNavigation />
 }
 
-function RootLayoutNav() {
+function RootLayoutNavigation() {
 	const { colorScheme } = useColorScheme()
 
 	return (
@@ -59,16 +38,16 @@ function RootLayoutNav() {
 						title: "Notes",
 						headerLargeTitle: true,
 						headerRight: () => (
-							<Link href="/modal" asChild>
-								<Pressable>
-									<FontAwesome name="plus-circle" size={25} />
+							<Link href="/new" asChild>
+								<Pressable className="active:opacity-50">
+									<Icon name="plus-circle" size={26} />
 								</Pressable>
 							</Link>
 						),
 					}}
 				/>
 				<Stack.Screen
-					name="modal"
+					name="new"
 					options={{ title: "New note", presentation: "modal" }}
 				/>
 			</Stack>
