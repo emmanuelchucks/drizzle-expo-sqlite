@@ -5,10 +5,9 @@ A notes app.
 ## Demo
 
 <div>
-<img
-src="https://cdn-user-temp.veed.io/render/00d4a63f-96ef-441c-96a9-7b4c90e5f2ec.gif"
-alt="Demo gif of a working notes app built with drizzle and expo sqlite"
-style="width:360px" />
+
+https://github.com/emmanuelchucks/drizzle-expo-sqlite/assets/31349069/88d8eb37-7821-485b-952b-37098903b2d0
+
 <img
 src="https://github.com/emmanuelchucks/drizzle-expo-sqlite/blob/main/screenshots/2023-12-29%20at%2009.50.15.png?raw=true"
 alt="Home screen with some notes already saved"
