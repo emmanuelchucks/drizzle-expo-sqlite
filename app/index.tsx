@@ -21,8 +21,8 @@ export default function Index() {
 
 	if (notes.length === 0)
 		return (
-			<View className="flex-1 items-center justify-center gap-y-4">
-				<Text className="animate-spin text-8xl">⓿</Text>
+			<View className="flex-1 items-center justify-center">
+				<Text className="animate-spin p-4 text-8xl">⓿</Text>
 				<Text>Nothing yet</Text>
 			</View>
 		)

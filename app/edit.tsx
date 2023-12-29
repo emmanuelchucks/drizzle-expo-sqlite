@@ -19,39 +19,47 @@ export default function EditNote() {
 	const note = notes.find((note) => note.id === Number(id))
 
 	const isEditing = id !== undefined
+	const isiOS = Platform.OS === "ios"
+	const isAndroid = Platform.OS === "android"
+
+	const DeleteButton = (
+		<Pressable
+			onPress={() => {
+				deleteNote(id)
+				router.back()
+			}}
+			className="active:opacity-50"
+		>
+			<Text className="text-lg font-medium text-red-600 dark:text-red-400">
+				Delete
+			</Text>
+		</Pressable>
+	)
+
+	const SaveButton = (
+		<View className="flex flex-row gap-x-8">
+			{isEditing && isAndroid && DeleteButton}
+			<Pressable
+				onPress={() => {
+					saveNote(id)
+					router.back()
+				}}
+				className="active:opacity-50"
+			>
+				<Text className="text-lg font-medium text-blue-600 dark:text-blue-400">
+					Save
+				</Text>
+			</Pressable>
+		</View>
+	)
 
 	return (
 		<View className="m-4 gap-y-4">
 			<Stack.Screen
 				options={{
 					title: isEditing ? "Edit note" : "New note",
-					headerLeft: () =>
-						isEditing && (
-							<Pressable
-								onPress={() => {
-									deleteNote(id)
-									router.back()
-								}}
-								className="active:opacity-50"
-							>
-								<Text className="text-lg font-medium text-red-600 dark:text-red-400">
-									Delete
-								</Text>
-							</Pressable>
-						),
-					headerRight: () => (
-						<Pressable
-							onPress={() => {
-								saveNote(id)
-								router.back()
-							}}
-							className="active:opacity-50"
-						>
-							<Text className="text-lg font-medium text-blue-600 dark:text-blue-400">
-								Save
-							</Text>
-						</Pressable>
-					),
+					headerLeft: () => isEditing && isiOS && DeleteButton,
+					headerRight: () => SaveButton,
 				}}
 			/>
 			<TextInput
@@ -67,7 +75,7 @@ export default function EditNote() {
 				value={body}
 				onChangeText={onChangeBody}
 				placeholder="Body"
-				className="h-full"
+				className="h-full align-top"
 			/>
 
 			{/* Use a light status bar on iOS to account for the black space above the modal */}
