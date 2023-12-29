@@ -75,7 +75,7 @@ export default function EditNote() {
 				value={body}
 				onChangeText={onChangeBody}
 				placeholder="Body"
-				className="h-full"
+				className="h-full align-top"
 			/>
 
 			{/* Use a light status bar on iOS to account for the black space above the modal */}
