@@ -11,17 +11,34 @@ import { Platform, Pressable, Text } from "react-native"
 export default function EditNote() {
 	const { id } = useLocalSearchParams<{ id: string }>()
 	const { title, body } = useEditNote()
-	const { onChangeTitle, onChangeBody, saveNote } = useEditNoteActions()
+	const { onChangeTitle, onChangeBody, saveNote, deleteNote } =
+		useEditNoteActions()
 	const router = useRouter()
 
 	const notes = useNotes()
 	const note = notes.find((note) => note.id === Number(id))
 
+	const isEditing = id !== undefined
+
 	return (
 		<View className="m-4 gap-y-4">
 			<Stack.Screen
 				options={{
-					title: id ? "Edit note" : "New note",
+					title: isEditing ? "Edit note" : "New note",
+					headerLeft: () =>
+						isEditing && (
+							<Pressable
+								onPress={() => {
+									deleteNote(id)
+									router.back()
+								}}
+								className="active:opacity-50"
+							>
+								<Text className="text-lg font-medium text-red-600 dark:text-red-400">
+									Delete
+								</Text>
+							</Pressable>
+						),
 					headerRight: () => (
 						<Pressable
 							onPress={() => {
