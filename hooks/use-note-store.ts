@@ -1,6 +1,6 @@
 import { db } from "@/db/client"
 import { notes, type SelectNote } from "@/db/schema"
-import { desc } from "drizzle-orm"
+import { desc, eq } from "drizzle-orm"
 import { create } from "zustand"
 
 type SearchStore = {
@@ -55,6 +55,7 @@ type EditNoteStore = {
 		onChangeTitle: (title: string) => void
 		onChangeBody: (body: string) => void
 		saveNote: (id: string) => void
+		deleteNote: (id: string) => void
 	}
 }
 
@@ -75,6 +76,12 @@ const useEditNoteStore = create<EditNoteStore>((set, get) => ({
 				})
 				.run()
 			set({ note: { title: undefined, body: undefined } })
+			useNoteStore.getState().actions.refetch()
+		},
+		deleteNote: (id) => {
+			db.delete(notes)
+				.where(eq(notes.id, Number(id)))
+				.run()
 			useNoteStore.getState().actions.refetch()
 		},
 	},
