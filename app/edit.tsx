@@ -11,30 +11,55 @@ import { Platform, Pressable, Text } from "react-native"
 export default function EditNote() {
 	const { id } = useLocalSearchParams<{ id: string }>()
 	const { title, body } = useEditNote()
-	const { onChangeTitle, onChangeBody, saveNote } = useEditNoteActions()
+	const { onChangeTitle, onChangeBody, saveNote, deleteNote } =
+		useEditNoteActions()
 	const router = useRouter()
 
 	const notes = useNotes()
 	const note = notes.find((note) => note.id === Number(id))
+
+	const isEditing = id !== undefined
+	const isiOS = Platform.OS === "ios"
+	const isAndroid = Platform.OS === "android"
+
+	const DeleteButton = (
+		<Pressable
+			onPress={() => {
+				deleteNote(id)
+				router.back()
+			}}
+			className="active:opacity-50"
+		>
+			<Text className="text-lg font-medium text-red-600 dark:text-red-400">
+				Delete
+			</Text>
+		</Pressable>
+	)
+
+	const SaveButton = (
+		<View className="flex flex-row gap-x-8">
+			{isEditing && isAndroid && DeleteButton}
+			<Pressable
+				onPress={() => {
+					saveNote(id)
+					router.back()
+				}}
+				className="active:opacity-50"
+			>
+				<Text className="text-lg font-medium text-blue-600 dark:text-blue-400">
+					Save
+				</Text>
+			</Pressable>
+		</View>
+	)
 
 	return (
 		<View className="m-4 gap-y-4">
 			<Stack.Screen
 				options={{
 					title: id ? "Edit note" : "New note",
-					headerRight: () => (
-						<Pressable
-							onPress={() => {
-								saveNote(id)
-								router.back()
-							}}
-							className="active:opacity-50"
-						>
-							<Text className="text-lg font-medium text-blue-600 dark:text-blue-400">
-								Save
-							</Text>
-						</Pressable>
-					),
+					headerLeft: () => isEditing && isiOS && DeleteButton,
+					headerRight: () => SaveButton,
 				}}
 			/>
 			<TextInput
