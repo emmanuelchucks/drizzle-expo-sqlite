@@ -3,6 +3,23 @@ import { notes, type SelectNote } from "@/db/schema"
 import { desc } from "drizzle-orm"
 import { create } from "zustand"
 
+type SearchStore = {
+	searchText: string
+	actions: {
+		onChangeSearchText: (text: string) => void
+	}
+}
+
+const useSearchStore = create<SearchStore>((set) => ({
+	searchText: "",
+	actions: {
+		onChangeSearchText: (text) => set({ searchText: text }),
+	},
+}))
+
+export const useSearchText = () => useSearchStore((state) => state.searchText)
+export const useSearchActions = () => useSearchStore((state) => state.actions)
+
 type NoteStore = {
 	notes: SelectNote[]
 	actions: {
@@ -12,11 +29,20 @@ type NoteStore = {
 
 const useNoteStore = create<NoteStore>((set) => {
 	const fetchStatement = db.select().from(notes).orderBy(desc(notes.id))
-	return {
-		notes: fetchStatement.all(),
-		actions: {
-			refetch: () => set({ notes: fetchStatement.all() }),
-		},
+	try {
+		return {
+			notes: fetchStatement.all(),
+			actions: {
+				refetch: () => set({ notes: fetchStatement.all() }),
+			},
+		}
+	} catch (error) {
+		return {
+			notes: [],
+			actions: {
+				refetch: () => set({ notes: fetchStatement.all() }),
+			},
+		}
 	}
 })
 

@@ -18,7 +18,7 @@ export default function EditNote() {
 	const note = notes.find((note) => note.id === Number(id))
 
 	return (
-		<>
+		<View className="m-4 gap-y-4">
 			<Stack.Screen
 				options={{
 					title: id ? "Edit note" : "New note",
@@ -37,25 +37,24 @@ export default function EditNote() {
 					),
 				}}
 			/>
-			<View className="m-4 gap-y-4">
-				<TextInput
-					defaultValue={note?.title ?? ""}
-					value={title}
-					onChangeText={onChangeTitle}
-					placeholder="Title"
-					className="text-2xl font-semibold"
-				/>
-				<TextInput
-					multiline
-					defaultValue={note?.body ?? ""}
-					value={body}
-					onChangeText={onChangeBody}
-					placeholder="Body"
-					className="h-full"
-				/>
-			</View>
+			<TextInput
+				defaultValue={note?.title ?? ""}
+				value={title}
+				onChangeText={onChangeTitle}
+				placeholder="Title"
+				className="text-2xl font-semibold"
+			/>
+			<TextInput
+				multiline
+				defaultValue={note?.body ?? ""}
+				value={body}
+				onChangeText={onChangeBody}
+				placeholder="Body"
+				className="h-full"
+			/>
+
 			{/* Use a light status bar on iOS to account for the black space above the modal */}
 			<StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-		</>
+		</View>
 	)
 }
