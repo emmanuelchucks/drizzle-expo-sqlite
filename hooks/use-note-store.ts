@@ -66,7 +66,6 @@ const useEditNoteStore = create<EditNoteStore>((set, get) => ({
 			set((state) => ({ note: { ...state.note, title } })),
 		onChangeBody: (body) => set((state) => ({ note: { ...state.note, body } })),
 		saveNote: (id) => {
-			console.log("STRE LOG: ", id)
 			const { title, body } = get().note
 			if (!title && !body) return
 			db.insert(notes)

@@ -22,8 +22,6 @@ export default function EditNote() {
 	const isiOS = Platform.OS === "ios"
 	const isAndroid = Platform.OS === "android"
 
-	console.log("changes: ", isEditing, isiOS, isAndroid, id)
-
 	const DeleteButton = (
 		<Pressable
 			onPress={() => {
