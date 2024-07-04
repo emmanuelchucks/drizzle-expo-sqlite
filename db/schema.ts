@@ -6,7 +6,7 @@ export const notes = sqliteTable("notes", {
 	title: text("title"),
 	body: text("body"),
 	createdAt: text("created_at")
-		.default(sql`CURRENT_TIMESTAMP`)
+		.default(sql`strftime('%Y-%m-%dT%H:%M:%fZ', 'now')`)
 		.notNull(),
 	updatedAt: text("updated_at"),
 })

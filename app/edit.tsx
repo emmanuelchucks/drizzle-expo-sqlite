@@ -22,10 +22,12 @@ export default function EditNote() {
 	const isiOS = Platform.OS === "ios"
 	const isAndroid = Platform.OS === "android"
 
+	console.log("changes: ", isEditing, isiOS, isAndroid, id)
+
 	const DeleteButton = (
 		<Pressable
 			onPress={() => {
-				deleteNote(id)
+				id && deleteNote(id)
 				router.back()
 			}}
 			className="active:opacity-50"
