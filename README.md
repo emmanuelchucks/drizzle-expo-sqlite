@@ -24,6 +24,7 @@ style="width:360px" />
 src="https://github.com/emmanuelchucks/drizzle-expo-sqlite/blob/main/screenshots/2023-12-29%20at%2009.52.04.png?raw=true"
 alt="Search functionality on home screeen"
 style="width:360px" />
+
 </div>
 
 ## Features
