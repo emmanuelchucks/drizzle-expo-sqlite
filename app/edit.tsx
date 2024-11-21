@@ -25,7 +25,9 @@ export default function EditNote() {
 	const DeleteButton = (
 		<Pressable
 			onPress={() => {
-				id && deleteNote(id)
+				if (id) {
+					deleteNote(id)
+				}
 				router.back()
 			}}
 			className="active:opacity-50"
