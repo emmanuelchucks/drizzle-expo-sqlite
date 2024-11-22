@@ -1,6 +1,8 @@
 import { Text, View } from "@/components/themed"
-import { useNoteActions, useNotes, useSearchText } from "@/hooks/use-note-store"
+import { getAllNotes } from "@/db/queries"
+import { useSearchText } from "@/hooks/use-search-text"
 import { formatDistanceToNowStrict } from "date-fns"
+import { useLiveQuery } from "drizzle-orm/expo-sqlite"
 import { Link } from "expo-router"
 import { FlatList, Pressable } from "react-native"
 
@@ -9,17 +11,16 @@ function formatDate(date: string) {
 }
 
 export default function Index() {
-	const notes = useNotes()
+	const notesQuery = useLiveQuery(getAllNotes())
 	const searchText = useSearchText()
-	const { refetch } = useNoteActions()
 
-	const filteredNotes = notes.filter(
+	const filteredNotes = notesQuery.data.filter(
 		(note) =>
 			note.title?.toLowerCase().includes(searchText.toLowerCase()) ||
 			note.body?.toLowerCase().includes(searchText.toLowerCase()),
 	)
 
-	if (notes.length === 0)
+	if (notesQuery.data.length === 0)
 		return (
 			<View className="flex-1 items-center justify-center">
 				<Text className="animate-spin p-4 text-8xl">⓿</Text>
@@ -31,8 +32,6 @@ export default function Index() {
 		<FlatList
 			numColumns={2}
 			data={filteredNotes}
-			refreshing={false}
-			onRefresh={refetch}
 			keyExtractor={(note) => String(note.id)}
 			contentInsetAdjustmentBehavior="automatic"
 			renderItem={({ item: note }) => (
@@ -43,7 +42,7 @@ export default function Index() {
 						params: { id: note.id },
 					}}
 				>
-					<Pressable className="flex-1 gap-y-2 rounded border border-black/75 p-4 dark:border-white/75">
+					<Pressable className="pointer-events-box-only flex-1 gap-y-2 rounded border border-black/75 p-4 active:opacity-50 dark:border-white/75">
 						<Text className="line-clamp-1 text-2xl font-medium">
 							{note.title}
 						</Text>
@@ -56,8 +55,8 @@ export default function Index() {
 					</Pressable>
 				</Link>
 			)}
-			contentContainerStyle={{ gap: 8, padding: 8 }}
-			columnWrapperStyle={{ gap: 8 }}
+			contentContainerClassName="gap-2 p-2"
+			columnWrapperClassName="gap-2"
 		/>
 	)
 }
