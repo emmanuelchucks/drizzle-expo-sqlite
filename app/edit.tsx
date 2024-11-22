@@ -1,57 +1,54 @@
-import { TextInput, View } from "@/components/themed"
-import {
-	useEditNote,
-	useEditNoteActions,
-	useNotes,
-} from "@/hooks/use-note-store"
+import { Text, TextInput, View } from "@/components/themed"
+import { deleteNote, saveNote } from "@/db/mutations"
+import { getNoteById } from "@/db/queries"
+import { useLiveQuery } from "drizzle-orm/expo-sqlite"
 import { Stack, useLocalSearchParams, useRouter } from "expo-router"
 import { StatusBar } from "expo-status-bar"
-import { Platform, Pressable, Text } from "react-native"
+import { useState } from "react"
+import { Platform } from "react-native"
 
 export default function EditNote() {
 	const { id } = useLocalSearchParams<{ id: string }>()
-	const { title, body } = useEditNote()
-	const { onChangeTitle, onChangeBody, saveNote, deleteNote } =
-		useEditNoteActions()
 	const router = useRouter()
 
-	const notes = useNotes()
-	const note = notes.find((note) => note.id === Number(id))
+	const noteQuery = useLiveQuery(getNoteById(Number(id)))
+	const note = noteQuery.data.at(0)
+
+	const [editedTitle, setEditedTitle] = useState<string>()
+	const [editedBody, setEditedBody] = useState<string>()
+	const title = editedTitle ?? note?.title ?? ""
+	const body = editedBody ?? note?.body ?? ""
 
 	const isEditing = id !== undefined
 	const isiOS = Platform.OS === "ios"
 	const isAndroid = Platform.OS === "android"
 
 	const DeleteButton = (
-		<Pressable
+		<Text
 			onPress={() => {
-				if (id) {
-					deleteNote(id)
-				}
+				if (!note) return
+				deleteNote(note)
 				router.back()
 			}}
-			className="active:opacity-50"
+			className="text-lg font-medium text-red-600 dark:text-red-400"
 		>
-			<Text className="text-lg font-medium text-red-600 dark:text-red-400">
-				Delete
-			</Text>
-		</Pressable>
+			Delete
+		</Text>
 	)
 
 	const SaveButton = (
 		<View className="flex flex-row gap-x-8">
 			{isEditing && isAndroid && DeleteButton}
-			<Pressable
+			<Text
 				onPress={() => {
-					saveNote(id)
+					const newNote = { id, title, body }
+					saveNote(newNote)
 					router.back()
 				}}
-				className="active:opacity-50"
+				className="text-lg font-medium text-blue-600 dark:text-blue-400"
 			>
-				<Text className="text-lg font-medium text-blue-600 dark:text-blue-400">
-					Save
-				</Text>
-			</Pressable>
+				Save
+			</Text>
 		</View>
 	)
 
@@ -65,17 +62,15 @@ export default function EditNote() {
 				}}
 			/>
 			<TextInput
-				defaultValue={note?.title ?? ""}
 				value={title}
-				onChangeText={onChangeTitle}
+				onChangeText={setEditedTitle}
 				placeholder="Title"
 				className="text-2xl font-semibold"
 			/>
 			<TextInput
 				multiline
-				defaultValue={note?.body ?? ""}
 				value={body}
-				onChangeText={onChangeBody}
+				onChangeText={setEditedBody}
 				placeholder="Body"
 				className="h-full align-top"
 			/>

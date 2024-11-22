@@ -11,4 +11,4 @@ export const notes = sqliteTable("notes", {
 	updatedAt: text("updated_at"),
 })
 
-export type SelectNote = typeof notes.$inferSelect
+export type Note = typeof notes.$inferSelect

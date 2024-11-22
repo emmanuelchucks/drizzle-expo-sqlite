@@ -19,6 +19,7 @@
 	"dependencies": {
 		"@expo/vector-icons": "^14.0.4",
 		"@react-navigation/native": "^7.0.3",
+		"clsx": "^2.1.1",
 		"date-fns": "^4.1.0",
 		"drizzle-orm": "^0.36.3",
 		"expo": "52.0.9",
@@ -30,6 +31,7 @@
 		"expo-status-bar": "~2.0.0",
 		"expo-system-ui": "~4.0.3",
 		"expo-web-browser": "~14.0.1",
+		"jotai": "^2.10.3",
 		"nativewind": "^4.1.23",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
@@ -38,7 +40,7 @@
 		"react-native-safe-area-context": "4.12.0",
 		"react-native-screens": "4.1.0",
 		"react-native-web": "~0.19.13",
-		"zustand": "^5.0.1"
+		"tailwind-merge": "^2.5.4"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.26.0",

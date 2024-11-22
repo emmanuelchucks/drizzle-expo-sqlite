@@ -1,6 +1,6 @@
 import { Icon } from "@/components/themed"
 import { useLoadAssets } from "@/hooks/use-load-assets"
-import { useSearchActions } from "@/hooks/use-note-store"
+import { useSearchTextActions } from "@/hooks/use-search-text"
 import "@/styles/global.css"
 import {
 	DarkTheme,
@@ -9,7 +9,6 @@ import {
 } from "@react-navigation/native"
 import { Link, Stack } from "expo-router"
 import { useColorScheme } from "nativewind"
-import { Pressable } from "react-native"
 
 // Catch any errors thrown by the Layout component.
 export { ErrorBoundary } from "expo-router"
@@ -27,7 +26,7 @@ export default function RootLayout() {
 
 function RootLayoutNavigation() {
 	const { colorScheme } = useColorScheme()
-	const { onChangeSearchText } = useSearchActions()
+	const { editSearchText } = useSearchTextActions()
 
 	return (
 		<ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
@@ -40,16 +39,18 @@ function RootLayoutNavigation() {
 						headerSearchBarOptions: {
 							placeholder: "Search notes",
 							onChangeText: ({ nativeEvent }) =>
-								onChangeSearchText(nativeEvent.text),
+								editSearchText(nativeEvent.text),
 						},
 						headerRight: () => (
-							<Link href="/edit" asChild>
-								<Pressable className="active:opacity-50">
-									<Icon
-										name="plus-circle"
-										className="text-3xl text-blue-600 dark:text-blue-400"
-									/>
-								</Pressable>
+							<Link
+								suppressHighlighting
+								href="/edit"
+								className="active:opacity-50"
+							>
+								<Icon
+									name="plus-circle"
+									className="text-3xl text-blue-600 dark:text-blue-400"
+								/>
 							</Link>
 						),
 					}}
