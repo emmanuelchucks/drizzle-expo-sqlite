@@ -2,17 +2,11 @@
 	"expo": {
 		"name": "drizzle-expo-sqlite",
 		"slug": "drizzle-expo-sqlite",
-		"version": "1.0.0",
+		"version": "2.0.0",
 		"orientation": "portrait",
 		"icon": "./assets/images/icon.png",
 		"scheme": "drizzle-expo-sqlite",
 		"userInterfaceStyle": "automatic",
-		"newArchEnabled": true,
-		"splash": {
-			"image": "./assets/images/splash.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#ffffff"
-		},
 		"ios": {
 			"supportsTablet": true
 		},
@@ -20,16 +14,19 @@
 			"adaptiveIcon": {
 				"foregroundImage": "./assets/images/adaptive-icon.png",
 				"backgroundColor": "#ffffff"
-			}
+			},
+			"predictiveBackGestureEnabled": true,
+			"package": "com.yetliz19.drizzleexposqlite"
 		},
 		"web": {
 			"bundler": "metro",
 			"output": "static",
 			"favicon": "./assets/images/favicon.png"
 		},
-		"plugins": ["expo-router", "expo-font", "expo-sqlite"],
+		"plugins": ["expo-router", "expo-sqlite", "expo-font"],
 		"experiments": {
-			"typedRoutes": true
+			"typedRoutes": true,
+			"reactCompiler": true
 		}
 	}
 }
