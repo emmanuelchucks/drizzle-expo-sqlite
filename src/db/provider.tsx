@@ -1,8 +1,8 @@
-import migrations from "../../drizzle/migrations";
 import { drizzle, type ExpoSQLiteDatabase } from "drizzle-orm/expo-sqlite";
 import { migrate } from "drizzle-orm/expo-sqlite/migrator";
 import { SQLiteProvider, type SQLiteDatabase, useSQLiteContext } from "expo-sqlite";
 import { createContext, useContext, type PropsWithChildren } from "react";
+import migrations from "../../drizzle/migrations";
 
 const DbContext = createContext<ExpoSQLiteDatabase | null>(null);
 
