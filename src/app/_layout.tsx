@@ -18,7 +18,7 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <DatabaseProvider>
-        <StatusBar key={colorScheme} animated style={colorScheme === "dark" ? "light" : "dark"} />
+        <StatusBar animated style="auto" />
         <Stack>
           <Stack.Screen
             name="index"
