@@ -16,7 +16,7 @@ A notes app rebuilt on Expo SDK 55 with modern router, styling, and local data p
 
 - `src/app` route-first app structure
 - URL-backed search state (`/?q=...`)
-- Platform icon strategy (SF Symbols on iOS, Material fallback on Android)
+- Platform icon strategy via `expo-symbols` mappings (SF Symbols iOS + Material symbols Android/Web)
 - Drizzle migrations run at app startup via `drizzle-orm/expo-sqlite/migrator`
 
 ## Run locally
@@ -26,7 +26,9 @@ pnpm install
 pnpm start
 pnpm ios
 pnpm android
-pnpm type-check
+pnpm lint
+pnpm format
+pnpm typecheck
 ```
 
 ## Generate migrations
@@ -38,7 +40,7 @@ pnpm generate
 ## Known tradeoffs
 
 - Uses **NativeWind v5 preview** and **Drizzle beta** for latest APIs.
-- `lineHeight: null as never` is intentionally applied on inputs to preserve the desired text rendering behavior.
+- `lineHeight: 0` is intentionally applied on inputs to work around a NativeWind rendering bug.
 
 ## Pre-merge smoke checklist
 
@@ -48,5 +50,7 @@ pnpm generate
 - [ ] Delete note
 - [ ] Search filters via query param (`q`) and survives refresh/back
 - [ ] Existing note persists after app restart
-- [ ] `pnpm type-check` passes
-- [ ] `npx expo-doctor` passes
+- [ ] `pnpm lint` passes
+- [ ] `pnpm format` passes
+- [ ] `pnpm typecheck` passes
+- [ ] `pnpm dlx react-doctor` passes

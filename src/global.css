@@ -4,21 +4,21 @@
 @import "nativewind/theme";
 
 @theme {
-	--color-background: oklch(1 0 0);
-	--color-foreground: oklch(0.2 0 0);
-	--color-card: oklch(0.97 0.01 255);
-	--color-muted: oklch(0.65 0.02 255);
-	--color-accent: oklch(0.64 0.2 258);
-	--color-danger: oklch(0.57 0.22 27);
+  --color-background: oklch(1 0 0);
+  --color-foreground: oklch(0.2 0 0);
+  --color-card: oklch(0.97 0.01 255);
+  --color-muted: oklch(0.65 0.02 255);
+  --color-accent: oklch(0.64 0.2 258);
+  --color-danger: oklch(0.57 0.22 27);
 }
 
 @media (prefers-color-scheme: dark) {
-	:root {
-		--color-background: oklch(0.17 0.01 255);
-		--color-foreground: oklch(0.97 0 0);
-		--color-card: oklch(0.24 0.01 255);
-		--color-muted: oklch(0.78 0.02 255);
-		--color-accent: oklch(0.74 0.17 258);
-		--color-danger: oklch(0.67 0.2 27);
-	}
+  :root {
+    --color-background: oklch(0.17 0.01 255);
+    --color-foreground: oklch(0.97 0 0);
+    --color-card: oklch(0.24 0.01 255);
+    --color-muted: oklch(0.78 0.02 255);
+    --color-accent: oklch(0.74 0.17 258);
+    --color-danger: oklch(0.67 0.2 27);
+  }
 }

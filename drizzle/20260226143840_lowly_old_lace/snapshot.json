@@ -1,70 +1,70 @@
 {
-	"version": "7",
-	"dialect": "sqlite",
-	"id": "6d0c9017-d5ae-4d31-ac0c-a5684d95e313",
-	"prevIds": ["00000000-0000-0000-0000-000000000000"],
-	"ddl": [
-		{
-			"name": "notes",
-			"entityType": "tables"
-		},
-		{
-			"type": "text",
-			"notNull": false,
-			"autoincrement": false,
-			"default": null,
-			"generated": null,
-			"name": "id",
-			"entityType": "columns",
-			"table": "notes"
-		},
-		{
-			"type": "text",
-			"notNull": false,
-			"autoincrement": false,
-			"default": null,
-			"generated": null,
-			"name": "title",
-			"entityType": "columns",
-			"table": "notes"
-		},
-		{
-			"type": "text",
-			"notNull": false,
-			"autoincrement": false,
-			"default": null,
-			"generated": null,
-			"name": "body",
-			"entityType": "columns",
-			"table": "notes"
-		},
-		{
-			"type": "integer",
-			"notNull": true,
-			"autoincrement": false,
-			"default": "(CAST(unixepoch('subsec') * 1000 AS INTEGER))",
-			"generated": null,
-			"name": "created_at",
-			"entityType": "columns",
-			"table": "notes"
-		},
-		{
-			"type": "integer",
-			"notNull": false,
-			"autoincrement": false,
-			"default": null,
-			"generated": null,
-			"name": "updated_at",
-			"entityType": "columns",
-			"table": "notes"
-		},
-		{
-			"columns": ["id"],
-			"nameExplicit": false,
-			"name": "notes_pk",
-			"table": "notes",
-			"entityType": "pks"
-		}
-	],
-	"renames": []
+  "version": "7",
+  "dialect": "sqlite",
+  "id": "6d0c9017-d5ae-4d31-ac0c-a5684d95e313",
+  "prevIds": ["00000000-0000-0000-0000-000000000000"],
+  "ddl": [
+    {
+      "name": "notes",
+      "entityType": "tables"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "id",
+      "entityType": "columns",
+      "table": "notes"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "title",
+      "entityType": "columns",
+      "table": "notes"
+    },
+    {
+      "type": "text",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "body",
+      "entityType": "columns",
+      "table": "notes"
+    },
+    {
+      "type": "integer",
+      "notNull": true,
+      "autoincrement": false,
+      "default": "(CAST(unixepoch('subsec') * 1000 AS INTEGER))",
+      "generated": null,
+      "name": "created_at",
+      "entityType": "columns",
+      "table": "notes"
+    },
+    {
+      "type": "integer",
+      "notNull": false,
+      "autoincrement": false,
+      "default": null,
+      "generated": null,
+      "name": "updated_at",
+      "entityType": "columns",
+      "table": "notes"
+    },
+    {
+      "columns": ["id"],
+      "nameExplicit": false,
+      "name": "notes_pk",
+      "table": "notes",
+      "entityType": "pks"
+    }
+  ],
+  "renames": []
 }
