@@ -1,5 +1,7 @@
+import migrations from "../../drizzle/migrations";
 import { drizzle, type ExpoSQLiteDatabase } from "drizzle-orm/expo-sqlite";
-import { SQLiteProvider, useSQLiteContext, type SQLiteDatabase } from "expo-sqlite";
+import { migrate } from "drizzle-orm/expo-sqlite/migrator";
+import { SQLiteProvider, type SQLiteDatabase, useSQLiteContext } from "expo-sqlite";
 import { createContext, useContext, type PropsWithChildren } from "react";
 
 const DbContext = createContext<ExpoSQLiteDatabase | null>(null);
@@ -12,16 +14,8 @@ function DrizzleProvider({ children }: PropsWithChildren) {
 }
 
 async function onInit(sqlite: SQLiteDatabase) {
-  await sqlite.execAsync(`
-    PRAGMA journal_mode = WAL;
-    CREATE TABLE IF NOT EXISTS notes (
-      id text PRIMARY KEY,
-      title text,
-      body text,
-      created_at integer DEFAULT (CAST(unixepoch('subsec') * 1000 AS INTEGER)) NOT NULL,
-      updated_at integer
-    );
-  `);
+  await sqlite.execAsync("PRAGMA journal_mode = WAL;");
+  await migrate(drizzle(sqlite), migrations);
 }
 
 export function DatabaseProvider({ children }: PropsWithChildren) {
