@@ -2,7 +2,6 @@
   "name": "drizzle-expo-sqlite",
   "version": "2.0.0",
   "private": true,
-  "type": "module",
   "main": "expo-router/entry",
   "scripts": {
     "dev": "expo start",
