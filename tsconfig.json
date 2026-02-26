@@ -4,7 +4,8 @@
 		"strict": true,
 		"verbatimModuleSyntax": true,
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./src/*"],
+			"@/assets/*": ["./assets/*"]
 		}
 	},
 	"include": [

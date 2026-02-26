@@ -1,49 +1,52 @@
-# Drizzle ORM + Expo SQLite
+# Drizzle + Expo SQLite (Modernized)
 
-A notes app.
+A notes app rebuilt on Expo SDK 55 with modern router, styling, and local data patterns.
 
-## Demo
+## Stack
 
-<div>
+- Expo SDK 55
+- React Native 0.83 / React 19.2
+- Expo Router (`src/app` layout)
+- Drizzle ORM v1 beta + Expo SQLite
+- NativeWind v5 preview + Tailwind CSS v4 + react-native-css
+- tailwind-variants
+- TanStack Form
 
-https://github.com/emmanuelchucks/drizzle-expo-sqlite/assets/31349069/88d8eb37-7821-485b-952b-37098903b2d0
+## Key architecture choices
 
-<img
-src="https://github.com/user-attachments/assets/0f8adf25-a3f5-44f9-bab3-69c207a74fba"
-alt="Home screen with some notes already saved"
-style="width:360px" />
-<img
-src="https://github.com/user-attachments/assets/31c8c059-df2a-4c87-b667-e036d4c8373e"
-alt="New note screen for filling in new notes"
-style="width:360px" />
-<img
-src="https://github.com/user-attachments/assets/ec7f2447-76a9-4b20-80b0-06c7fffa2cac"
-alt="Edit note screen showcasing ability to edit or delete already saved note"
-style="width:360px" />
-<img
-src="https://github.com/user-attachments/assets/60af7268-8b02-4121-803d-375a8b32c22e"
-alt="Search functionality on home screeen"
-style="width:360px" />
-
-</div>
-
-## Features
-
-- Drizzle ORM
-- Expo SQLite
-- Expo SDK 50
-- Expo Router v3
-- Nativewind v4
+- `src/app` route-first app structure
+- URL-backed search state (`/?q=...`)
+- Platform icon strategy (SF Symbols on iOS, Material fallback on Android)
+- Drizzle migrations run at app startup via `drizzle-orm/expo-sqlite/migrator`
 
 ## Run locally
 
-If you already have a simulator/emulator set up, this should open Expo Go automatically:
-
-```zsh
-bun install
-bun run ios # or android
+```bash
+pnpm install
+pnpm start
+pnpm ios
+pnpm android
+pnpm type-check
 ```
 
-## Author
+## Generate migrations
 
-Emmanuel Chucks [@emmanuelchucks](https://x.com/emmanuelchucks)
+```bash
+pnpm generate
+```
+
+## Known tradeoffs
+
+- Uses **NativeWind v5 preview** and **Drizzle beta** for latest APIs.
+- `lineHeight: null as never` is intentionally applied on inputs to preserve the desired text rendering behavior.
+
+## Pre-merge smoke checklist
+
+- [ ] App boots on iOS and Android
+- [ ] Create note
+- [ ] Edit note
+- [ ] Delete note
+- [ ] Search filters via query param (`q`) and survives refresh/back
+- [ ] Existing note persists after app restart
+- [ ] `pnpm type-check` passes
+- [ ] `npx expo-doctor` passes
