@@ -41,6 +41,9 @@ importers:
       expo-router:
         specifier: ~55.0.2
         version: 55.0.2(@expo/log-box@55.0.7)(@expo/metro-runtime@55.0.6)(@types/react@19.2.14)(expo-constants@55.0.7)(expo-font@55.0.4)(expo-linking@55.0.7)(expo@55.0.2)(react-dom@19.2.0(react@19.2.0))(react-native-reanimated@4.2.1(react-native-worklets@0.7.2(@babel/core@7.26.0)(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-safe-area-context@5.6.2(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-screens@4.23.0(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0))(react-native-web@0.21.2(react-dom@19.2.0(react@19.2.0))(react@19.2.0))(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
+      expo-splash-screen:
+        specifier: ~55.0.9
+        version: 55.0.9(expo@55.0.2)(typescript@5.9.3)
       expo-sqlite:
         specifier: ~55.0.10
         version: 55.0.10(expo@55.0.2)(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)
@@ -2761,6 +2764,11 @@ packages:
   expo-server@55.0.5:
     resolution: {integrity: sha512-cfoh1OwBjHPCwYD11wep12l5WGkVEmRbGSZEbE4u+08k1TkOyYhrWyI2o/iMcUMMT8u1sKsymHKsrC8Mv82V7A==}
     engines: {node: '>=20.16.0'}
+
+  expo-splash-screen@55.0.9:
+    resolution: {integrity: sha512-FWAHLg5w6aesnrU1RtNoVNIA3FN11lFQCiWafPHpneqNtI6Wzkxxz3vu+4JTWlSkMIbylZ85F0qJe0CCNI9Eig==}
+    peerDependencies:
+      expo: '*'
 
   expo-sqlite@55.0.10:
     resolution: {integrity: sha512-yLQXkwcA0OVSKuL4t+a6vv+H/Klh8147n7hH75AN0MkC48p3Go7+6GM+3SFENeaBUsmOnOS3XSFxMxxj6PIg4g==}
@@ -7209,6 +7217,14 @@ snapshots:
       - supports-color
 
   expo-server@55.0.5: {}
+
+  expo-splash-screen@55.0.9(expo@55.0.2)(typescript@5.9.3):
+    dependencies:
+      '@expo/prebuild-config': 55.0.7(expo@55.0.2)(typescript@5.9.3)
+      expo: 55.0.2(@babel/core@7.26.0)(@expo/dom-webview@55.0.3)(@expo/metro-runtime@55.0.6)(expo-router@55.0.2)(react-dom@19.2.0(react@19.2.0))(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0)(typescript@5.9.3)
+    transitivePeerDependencies:
+      - supports-color
+      - typescript
 
   expo-sqlite@55.0.10(expo@55.0.2)(react-native@0.83.2(@babel/core@7.26.0)(@types/react@19.2.14)(react@19.2.0))(react@19.2.0):
     dependencies:
