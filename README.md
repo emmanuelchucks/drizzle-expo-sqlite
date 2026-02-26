@@ -36,21 +36,3 @@ pnpm typecheck
 ```bash
 pnpm generate
 ```
-
-## Known tradeoffs
-
-- Uses **NativeWind v5 preview** and **Drizzle beta** for latest APIs.
-- `lineHeight: 0` is intentionally applied on inputs to work around a NativeWind rendering bug.
-
-## Pre-merge smoke checklist
-
-- [ ] App boots on iOS and Android
-- [ ] Create note
-- [ ] Edit note
-- [ ] Delete note
-- [ ] Search filters via query param (`q`) and survives refresh/back
-- [ ] Existing note persists after app restart
-- [ ] `pnpm lint` passes
-- [ ] `pnpm format` passes
-- [ ] `pnpm typecheck` passes
-- [ ] `pnpm dlx react-doctor` passes
