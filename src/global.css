@@ -4,21 +4,45 @@
 @import "nativewind/theme";
 
 @theme {
-  --color-background: oklch(1 0 0);
-  --color-foreground: oklch(0.2 0 0);
-  --color-card: oklch(0.97 0.01 255);
-  --color-muted: oklch(0.65 0.02 255);
-  --color-accent: oklch(0.64 0.2 258);
-  --color-danger: oklch(0.57 0.22 27);
+  --color-background: var(--surface-background);
+  --color-foreground: var(--surface-foreground);
+  --color-card: var(--surface-card);
+  --color-muted: var(--surface-muted);
+  --color-accent: var(--surface-accent);
+  --color-danger: var(--surface-danger);
+  --color-border: var(--surface-border);
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+  --surface-background: oklch(1 0 0);
+  --surface-foreground: oklch(0.2 0 0);
+  --surface-card: oklch(0.97 0.01 255);
+  --surface-muted: oklch(0.65 0.02 255);
+  --surface-accent: oklch(0.64 0.2 258);
+  --surface-danger: oklch(0.57 0.22 27);
+  --surface-border: oklch(0.85 0.01 255);
+}
+
+@media ios {
   :root {
-    --color-background: oklch(0.17 0.01 255);
-    --color-foreground: oklch(0.97 0 0);
-    --color-card: oklch(0.24 0.01 255);
-    --color-muted: oklch(0.78 0.02 255);
-    --color-accent: oklch(0.74 0.17 258);
-    --color-danger: oklch(0.67 0.2 27);
+    --surface-background: platformColor("systemBackground");
+    --surface-foreground: platformColor("label");
+    --surface-card: platformColor("secondarySystemBackground");
+    --surface-muted: platformColor("secondaryLabel");
+    --surface-accent: platformColor("link");
+    --surface-danger: platformColor("systemRed");
+    --surface-border: platformColor("separator");
+  }
+}
+
+@media android {
+  :root {
+    --surface-background: platformColor("?attr/colorBackground");
+    --surface-foreground: platformColor("?attr/textColorPrimary");
+    --surface-card: platformColor("?attr/colorSurface", "?attr/colorBackgroundFloating");
+    --surface-muted: platformColor("?attr/textColorSecondary");
+    --surface-accent: platformColor("?attr/colorAccent", "?attr/colorPrimary");
+    --surface-danger: platformColor("?attr/colorError");
+    --surface-border: platformColor("?attr/listDivider");
   }
 }
