@@ -4,23 +4,13 @@
 @import "nativewind/theme";
 
 @theme {
-  --color-background: var(--surface-background);
-  --color-foreground: var(--surface-foreground);
-  --color-card: var(--surface-card);
-  --color-muted: var(--surface-muted);
-  --color-accent: var(--surface-accent);
-  --color-danger: var(--surface-danger);
-  --color-border: var(--surface-border);
-}
-
-:root {
-  --surface-background: oklch(1 0 0);
-  --surface-foreground: oklch(0.2 0 0);
-  --surface-card: oklch(0.97 0.01 255);
-  --surface-muted: oklch(0.65 0.02 255);
-  --surface-accent: oklch(0.64 0.2 258);
-  --surface-danger: oklch(0.57 0.22 27);
-  --surface-border: oklch(0.85 0.01 255);
+  --color-background: var(--surface-background, oklch(1 0 0));
+  --color-foreground: var(--surface-foreground, oklch(0.2 0 0));
+  --color-card: var(--surface-card, oklch(0.97 0.01 255));
+  --color-muted: var(--surface-muted, oklch(0.65 0.02 255));
+  --color-accent: var(--surface-accent, oklch(0.64 0.2 258));
+  --color-danger: var(--surface-danger, oklch(0.57 0.22 27));
+  --color-border: var(--surface-border, oklch(0.85 0.01 255));
 }
 
 @media ios {

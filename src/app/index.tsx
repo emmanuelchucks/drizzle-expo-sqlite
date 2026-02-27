@@ -54,8 +54,8 @@ export default function NotesScreen() {
 
   return (
     <View className="bg-background flex-1 px-4">
-      <View className="bg-card mt-4 mb-3 flex-row items-center gap-2 rounded-xl border border-border px-3">
-        <AppIcon name="search" size={20} />
+      <View className="bg-card border-border mt-4 mb-3 flex-row items-center gap-2 rounded-xl border px-3">
+        <AppIcon name="search" size={20} className="text-muted" />
         <TextInput
           value={queryParam}
           onChangeText={(text) => router.setParams({ q: text || undefined })}

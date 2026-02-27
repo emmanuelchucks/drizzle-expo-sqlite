@@ -65,7 +65,7 @@ export default function EditScreen() {
                   }
                   className="active:opacity-70"
                 >
-                  <AppIcon name="delete" size={24} />
+                  <AppIcon name="delete" size={24} className="text-danger" />
                 </Pressable>
               )
             : undefined,
@@ -79,7 +79,7 @@ export default function EditScreen() {
             onChangeText={field.handleChange}
             placeholder="Title"
             style={{ lineHeight: 0 }}
-            className="bg-card text-foreground rounded-xl border border-border p-4 text-2xl font-semibold placeholder:text-muted"
+            className="bg-card text-foreground border-border placeholder:text-muted rounded-xl border p-4 text-2xl font-semibold"
           />
         )}
       </form.Field>
@@ -93,7 +93,7 @@ export default function EditScreen() {
             placeholder="Start writing..."
             textAlignVertical="top"
             style={{ lineHeight: 0 }}
-            className="bg-card text-foreground min-h-80 flex-1 rounded-xl border border-border p-4 text-lg placeholder:text-muted"
+            className="bg-card text-foreground border-border placeholder:text-muted min-h-80 flex-1 rounded-xl border p-4 text-lg"
           />
         )}
       </form.Field>

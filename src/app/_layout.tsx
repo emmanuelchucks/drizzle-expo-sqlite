@@ -1,7 +1,8 @@
 import "@/global.css";
+import { ThemeProvider, DarkTheme, DefaultTheme } from "@react-navigation/native";
 import { Link, Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Platform, Pressable } from "react-native";
+import { Platform, Pressable, useColorScheme } from "react-native";
 import { AppIcon } from "@/components/icon";
 import { DatabaseProvider } from "@/db/provider";
 
@@ -12,31 +13,35 @@ export const unstable_settings = {
 };
 
 export default function RootLayout() {
+  const colorScheme = useColorScheme();
+
   return (
-    <DatabaseProvider>
-      <StatusBar animated style="auto" />
-      <Stack>
-        <Stack.Screen
-          name="index"
-          options={{
-            title: "Notes",
-            headerRight: () => (
-              <Link href="/edit" asChild>
-                <Pressable className="active:opacity-70">
-                  <AppIcon name="add" size={26} />
-                </Pressable>
-              </Link>
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="edit"
-          options={{
-            title: "Edit note",
-            presentation: Platform.OS === "ios" ? "modal" : "card",
-          }}
-        />
-      </Stack>
-    </DatabaseProvider>
+    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <DatabaseProvider>
+        <StatusBar animated style="auto" />
+        <Stack>
+          <Stack.Screen
+            name="index"
+            options={{
+              title: "Notes",
+              headerRight: () => (
+                <Link href="/edit" asChild>
+                  <Pressable className="active:opacity-70">
+                    <AppIcon name="add" size={26} />
+                  </Pressable>
+                </Link>
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="edit"
+            options={{
+              title: "Edit note",
+              presentation: Platform.OS === "ios" ? "modal" : "card",
+            }}
+          />
+        </Stack>
+      </DatabaseProvider>
+    </ThemeProvider>
   );
 }

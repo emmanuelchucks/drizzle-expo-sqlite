@@ -1,4 +1,5 @@
 import { SymbolView, type AndroidSymbol, type SFSymbol } from "expo-symbols";
+import { styled } from "nativewind";
 
 type IconName = "add" | "search" | "delete" | "save" | "note";
 
@@ -14,14 +15,23 @@ const symbolMap: Record<IconName, { ios: SFSymbol; android: AndroidSymbol; web: 
   note: { ios: "note.text", android: "description", web: "description" },
 };
 
+const StyledSymbolView = styled(SymbolView, {
+  className: {
+    target: "style",
+    nativeStyleMapping: {
+      color: "tintColor",
+    },
+  },
+});
+
 export function AppIcon({
   name,
   size = 24,
-  color,
+  className,
 }: {
   name: IconName;
   size?: number;
-  color?: string;
+  className?: string;
 }) {
-  return <SymbolView name={symbolMap[name]} size={size} tintColor={color} />;
+  return <StyledSymbolView name={symbolMap[name]} size={size} className={className} />;
 }
