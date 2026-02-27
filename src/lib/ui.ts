@@ -3,7 +3,7 @@ import { cn, tv } from "tailwind-variants";
 export { cn };
 
 export const noteCardStyles = tv({
-  base: "bg-card flex-1 gap-2 rounded-2xl border border-zinc-300 p-4 active:opacity-70 dark:border-zinc-700",
+  base: "bg-card flex-1 gap-2 rounded-2xl border border-border p-4 active:opacity-70",
 });
 
 export const buttonStyles = tv({

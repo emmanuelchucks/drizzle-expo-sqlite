@@ -54,15 +54,14 @@ export default function NotesScreen() {
 
   return (
     <View className="bg-background flex-1 px-4">
-      <View className="bg-card mt-4 mb-3 flex-row items-center gap-2 rounded-xl border border-zinc-300 px-3 dark:border-zinc-700">
-        <AppIcon name="search" color="#8E8E93" size={20} />
+      <View className="bg-card mt-4 mb-3 flex-row items-center gap-2 rounded-xl border border-border px-3">
+        <AppIcon name="search" size={20} />
         <TextInput
           value={queryParam}
           onChangeText={(text) => router.setParams({ q: text || undefined })}
           placeholder="Search notes"
-          placeholderTextColor="#8E8E93"
           style={{ lineHeight: 0 }}
-          className="text-foreground flex-1 py-3 text-[16px]"
+          className="text-foreground placeholder:text-muted flex-1 py-3 text-[16px]"
         />
       </View>
 

@@ -47,7 +47,7 @@ export default function EditScreen() {
           title: id ? "Edit note" : "New note",
           headerRight: () => (
             <Pressable onPress={() => void form.handleSubmit()} className="active:opacity-70">
-              <AppIcon name="save" color="#3B82F6" size={26} />
+              <AppIcon name="save" size={26} />
             </Pressable>
           ),
           headerLeft: id
@@ -65,7 +65,7 @@ export default function EditScreen() {
                   }
                   className="active:opacity-70"
                 >
-                  <AppIcon name="delete" color="#E11D48" size={24} />
+                  <AppIcon name="delete" size={24} />
                 </Pressable>
               )
             : undefined,
@@ -79,7 +79,7 @@ export default function EditScreen() {
             onChangeText={field.handleChange}
             placeholder="Title"
             style={{ lineHeight: 0 }}
-            className="bg-card text-foreground rounded-xl border border-zinc-300 p-4 text-2xl font-semibold dark:border-zinc-700"
+            className="bg-card text-foreground rounded-xl border border-border p-4 text-2xl font-semibold placeholder:text-muted"
           />
         )}
       </form.Field>
@@ -93,7 +93,7 @@ export default function EditScreen() {
             placeholder="Start writing..."
             textAlignVertical="top"
             style={{ lineHeight: 0 }}
-            className="bg-card text-foreground min-h-80 flex-1 rounded-xl border border-zinc-300 p-4 text-lg dark:border-zinc-700"
+            className="bg-card text-foreground min-h-80 flex-1 rounded-xl border border-border p-4 text-lg placeholder:text-muted"
           />
         )}
       </form.Field>
