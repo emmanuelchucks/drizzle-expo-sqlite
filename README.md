@@ -4,14 +4,14 @@ A notes app rebuilt on Expo SDK 55 with modern router, styling, and local data p
 
 ## Demo
 
-<video src="https://github.com/user-attachments/assets/f3e411de-5872-4518-9ab6-09c23f86c02e" controls width="100%" poster="https://github.com/user-attachments/assets/da3f91cc-c449-4128-b161-8b60bb84cf52"></video>
+<video src="https://github.com/user-attachments/assets/deaf0af6-aba7-4ba3-af69-a8e7d8909bb2" controls width="100%" poster="https://github.com/user-attachments/assets/c3cf3a59-6c91-473a-98b5-811348c15d16"></video>
 
 <picture>
-  <source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="https://github.com/user-attachments/assets/06ebdfd8-79cc-4add-ae15-aa1765f2be25">
-  <source media="(prefers-color-scheme: dark) and (min-width: 768px)" srcset="https://github.com/user-attachments/assets/59f0d4db-7038-4075-9d0c-71f06ac93718">
-  <source media="(prefers-color-scheme: light) and (max-width: 767px)" srcset="https://github.com/user-attachments/assets/33c305ae-2ede-4572-9402-ec7a074b8ad6">
-  <source media="(prefers-color-scheme: light) and (min-width: 768px)" srcset="https://github.com/user-attachments/assets/3910c166-794d-40c1-9734-4921faa6a795">
-  <img alt="Drizzle Expo SQLite app screenshots in light and dark mode" src="https://github.com/user-attachments/assets/3910c166-794d-40c1-9734-4921faa6a795" width="100%">
+  <source media="(prefers-color-scheme: dark) and (max-width: 767px)" srcset="https://github.com/user-attachments/assets/9cbafee7-5baf-42c3-99f6-d48310f3a780">
+  <source media="(prefers-color-scheme: dark) and (min-width: 768px)" srcset="https://github.com/user-attachments/assets/b8a3e51a-5254-4f1a-9e0e-6e4dbb243b10">
+  <source media="(prefers-color-scheme: light) and (max-width: 767px)" srcset="https://github.com/user-attachments/assets/3fd379ac-9a71-4827-87cc-bb97701f84b1">
+  <source media="(prefers-color-scheme: light) and (min-width: 768px)" srcset="https://github.com/user-attachments/assets/b5298d18-ac34-4a1f-974a-fe530a86a01f">
+  <img alt="Drizzle Expo SQLite app screenshots in light and dark mode" src="https://github.com/user-attachments/assets/b5298d18-ac34-4a1f-974a-fe530a86a01f" width="100%">
 </picture>
 
 ## Stack
