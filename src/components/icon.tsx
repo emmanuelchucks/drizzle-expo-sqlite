@@ -1,4 +1,5 @@
-import { SymbolView, type AndroidSymbol, type SFSymbol } from "expo-symbols";
+import type { AndroidSymbol, SFSymbol } from "expo-symbols";
+import { SymbolView } from "expo-symbols";
 import { styled } from "nativewind";
 
 type IconName = "add" | "search" | "delete" | "save" | "note";

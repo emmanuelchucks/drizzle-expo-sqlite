@@ -10,13 +10,10 @@
     "android": "expo run:android",
     "ios": "expo run:ios",
     "web": "expo start --web",
-    "lint": "oxlint --type-aware --fix .",
-    "format": "oxfmt -c ./node_modules/@kasoa/oxfmt-config/dist/src/react/index.json .",
-    "typecheck": "tsgo --noEmit",
-    "type-check": "pnpm typecheck",
+    "check": "vp check",
+    "check:fix": "vp check --fix",
     "generate": "drizzle-kit generate",
     "clean": "git clean -xdf",
-    "check:all": "turbo lint format typecheck",
     "update:deps": "pnpm dlx taze latest -wrl && pnpm exec expo install --fix"
   },
   "dependencies": {
@@ -50,16 +47,13 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@kasoa/oxfmt-config": "^0.0.5",
-    "@kasoa/oxlint-config": "^0.0.4",
+    "@kasoa/vite-plus-config": "^0.0.4",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "~19.2.2",
     "@typescript/native-preview": "7.0.0-dev.20260226.1",
     "babel-plugin-inline-import": "^3.0.0",
     "drizzle-kit": "beta",
-    "oxfmt": "^0.35.0",
-    "oxlint": "^1.50.0",
-    "turbo": "^2.8.11"
+    "vite-plus": "^0.1.14"
   },
   "engines": {
     "node": ">=24"
@@ -68,9 +62,6 @@
   "pnpm": {
     "overrides": {
       "lightningcss": "1.30.1"
-    },
-    "allowBuilds": {
-      "esbuild": true
     }
   }
 }

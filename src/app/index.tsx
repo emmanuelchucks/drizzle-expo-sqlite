@@ -1,14 +1,15 @@
+import type { ListRenderItem } from "react-native";
 import { formatDistanceToNowStrict } from "date-fns";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import { Link, useLocalSearchParams, useRouter } from "expo-router";
-import { FlatList, type ListRenderItem, Pressable, Text, TextInput, View } from "react-native";
+import { FlatList, Pressable, Text, TextInput, View } from "react-native";
 import { AppIcon } from "@/components/icon";
 import { useDb } from "@/db/provider";
 import { getAllNotes } from "@/db/queries";
 import { noteCardStyles } from "@/lib/ui";
 
 function formatNoteDate(value: Date | number | null) {
-  if (!value) return null;
+  if (value === null) return null;
   const date = value instanceof Date ? value : new Date(value);
   return `${formatDistanceToNowStrict(date)} ago`;
 }
@@ -25,7 +26,8 @@ export default function NotesScreen() {
   const filtered = term
     ? notesQuery.data.filter(
         (note) =>
-          note.title?.toLowerCase().includes(term) || note.body?.toLowerCase().includes(term),
+          (note.title?.toLowerCase().includes(term) ?? false) ||
+          (note.body?.toLowerCase().includes(term) ?? false),
       )
     : notesQuery.data;
 
@@ -40,10 +42,10 @@ export default function NotesScreen() {
     >
       <Pressable className={noteCardStyles()}>
         <Text className="text-foreground line-clamp-1 text-xl font-semibold">
-          {item.title || "Untitled"}
+          {item.title ?? "Untitled"}
         </Text>
         <Text className="text-foreground line-clamp-4 min-h-14 flex-1">
-          {item.body || "No content"}
+          {item.body ?? "No content"}
         </Text>
         <Text className="text-muted text-xs">
           {formatNoteDate(item.updatedAt ?? item.createdAt)}
@@ -58,7 +60,9 @@ export default function NotesScreen() {
         <AppIcon name="search" size={20} className="text-muted" />
         <TextInput
           value={queryParam}
-          onChangeText={(text) => router.setParams({ q: text || undefined })}
+          onChangeText={(text) => {
+            router.setParams({ q: text === "" ? undefined : text });
+          }}
           placeholder="Search notes"
           style={{ lineHeight: 0 }}
           className="text-foreground placeholder:text-muted flex-1 py-3 text-[16px]"

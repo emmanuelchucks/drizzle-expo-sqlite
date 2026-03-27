@@ -1,9 +1,12 @@
-const { getDefaultConfig } = require("expo/metro-config");
-const { withNativewind } = require("nativewind/metro");
+const expoMetroConfig = require("expo/metro-config");
+const nativewindMetro = require("nativewind/metro");
 
-/** @type {import('expo/metro-config').MetroConfig} */
-const config = getDefaultConfig(__dirname);
+const defaultConfig = expoMetroConfig.getDefaultConfig();
 
-config.resolver.sourceExts.push("sql");
-
-module.exports = withNativewind(config);
+module.exports = nativewindMetro.withNativewind({
+  ...defaultConfig,
+  resolver: {
+    ...defaultConfig.resolver,
+    sourceExts: [...defaultConfig.resolver.sourceExts, "sql"],
+  },
+});

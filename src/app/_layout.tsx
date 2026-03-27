@@ -24,13 +24,7 @@ export default function RootLayout() {
             name="index"
             options={{
               title: "Notes",
-              headerRight: () => (
-                <Link href="/edit" asChild>
-                  <Pressable className="active:opacity-70">
-                    <AppIcon name="add" size={26} />
-                  </Pressable>
-                </Link>
-              ),
+              headerRight: AddNoteButton,
             }}
           />
           <Stack.Screen
@@ -43,5 +37,15 @@ export default function RootLayout() {
         </Stack>
       </DatabaseProvider>
     </ThemeProvider>
+  );
+}
+
+function AddNoteButton() {
+  return (
+    <Link href="/edit" asChild>
+      <Pressable className="active:opacity-70">
+        <AppIcon name="add" size={26} />
+      </Pressable>
+    </Link>
   );
 }

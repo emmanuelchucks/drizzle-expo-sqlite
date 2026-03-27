@@ -38,9 +38,7 @@ pnpm install
 pnpm start
 pnpm ios
 pnpm android
-pnpm lint
-pnpm format
-pnpm typecheck
+pnpm check
 ```
 
 ## Generate migrations
