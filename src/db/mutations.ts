@@ -3,7 +3,10 @@ import { eq } from "drizzle-orm";
 import type { Note } from "@/db/schema";
 import { notes } from "@/db/schema";
 
-export async function saveNote(db: ExpoSQLiteDatabase, note: Pick<Note, "id" | "title" | "body">) {
+export async function saveNote(
+  db: ExpoSQLiteDatabase,
+  note: Pick<Note, "id" | "title" | "body">,
+): Promise<void> {
   const title = note.title?.trim() ?? "";
   const body = note.body?.trim() ?? "";
   if (title === "" && body === "") return;
@@ -21,6 +24,6 @@ export async function saveNote(db: ExpoSQLiteDatabase, note: Pick<Note, "id" | "
     });
 }
 
-export async function deleteNote(db: ExpoSQLiteDatabase, id: string) {
+export async function deleteNote(db: ExpoSQLiteDatabase, id: string): Promise<void> {
   await db.delete(notes).where(eq(notes.id, id));
 }

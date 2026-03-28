@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import "@/global.css";
 import { ThemeProvider, DarkTheme, DefaultTheme } from "@react-navigation/native";
 import { Link, Stack } from "expo-router";
@@ -12,7 +13,7 @@ export const unstable_settings = {
   initialRouteName: "index",
 };
 
-export default function RootLayout() {
+export default function RootLayout(): ReactElement {
   const colorScheme = useColorScheme();
 
   return (

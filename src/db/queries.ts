@@ -2,10 +2,12 @@ import type { ExpoSQLiteDatabase } from "drizzle-orm/expo-sqlite";
 import { desc, eq } from "drizzle-orm";
 import { notes } from "@/db/schema";
 
-export function getAllNotes(db: ExpoSQLiteDatabase) {
-  return db.select().from(notes).orderBy(desc(notes.updatedAt), desc(notes.createdAt));
-}
+const getAllNotesImpl = (db: ExpoSQLiteDatabase) =>
+  db.select().from(notes).orderBy(desc(notes.updatedAt), desc(notes.createdAt));
 
-export function getNoteById(db: ExpoSQLiteDatabase, id: string) {
-  return db.select().from(notes).where(eq(notes.id, id)).limit(1);
-}
+const getNoteByIdImpl = (db: ExpoSQLiteDatabase, id: string) =>
+  db.select().from(notes).where(eq(notes.id, id)).limit(1);
+
+export const getAllNotes: typeof getAllNotesImpl = getAllNotesImpl;
+
+export const getNoteById: typeof getNoteByIdImpl = getNoteByIdImpl;

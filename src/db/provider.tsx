@@ -1,6 +1,6 @@
 import type { ExpoSQLiteDatabase } from "drizzle-orm/expo-sqlite";
 import type { SQLiteDatabase } from "expo-sqlite";
-import type { PropsWithChildren } from "react";
+import type { PropsWithChildren, ReactElement } from "react";
 import { drizzle } from "drizzle-orm/expo-sqlite";
 import { migrate } from "drizzle-orm/expo-sqlite/migrator";
 import { SQLiteProvider, useSQLiteContext } from "expo-sqlite";
@@ -21,7 +21,7 @@ async function onInit(sqlite: SQLiteDatabase) {
   await migrate(drizzle(sqlite), migrations);
 }
 
-export function DatabaseProvider({ children }: PropsWithChildren) {
+export function DatabaseProvider({ children }: PropsWithChildren): ReactElement {
   return (
     <SQLiteProvider
       databaseName="notes.db"
@@ -33,7 +33,7 @@ export function DatabaseProvider({ children }: PropsWithChildren) {
   );
 }
 
-export function useDb() {
+export function useDb(): ExpoSQLiteDatabase {
   const value = useContext(DbContext);
   if (!value) throw new Error("useDb must be used inside DatabaseProvider");
 

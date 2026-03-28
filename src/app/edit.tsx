@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import { useForm } from "@tanstack/react-form";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
 import * as Crypto from "expo-crypto";
@@ -8,7 +9,7 @@ import { deleteNote, saveNote } from "@/db/mutations";
 import { useDb } from "@/db/provider";
 import { getNoteById } from "@/db/queries";
 
-export default function EditScreen() {
+export default function EditScreen(): ReactElement {
   const db = useDb();
   const router = useRouter();
   const params = useLocalSearchParams<{ id?: string }>();

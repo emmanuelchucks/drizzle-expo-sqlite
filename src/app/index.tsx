@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import type { ListRenderItem } from "react-native";
 import { formatDistanceToNowStrict } from "date-fns";
 import { useLiveQuery } from "drizzle-orm/expo-sqlite";
@@ -14,7 +15,7 @@ function formatNoteDate(value: Date | number | null) {
   return `${formatDistanceToNowStrict(date)} ago`;
 }
 
-export default function NotesScreen() {
+export default function NotesScreen(): ReactElement {
   const db = useDb();
   const notesQuery = useLiveQuery(getAllNotes(db));
   const router = useRouter();

@@ -47,7 +47,7 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "@kasoa/vite-plus-config": "^0.0.4",
+    "@kasoa/vite-plus-config": "^0.0.8",
     "@tailwindcss/postcss": "^4.1.16",
     "@types/react": "~19.2.2",
     "@typescript/native-preview": "7.0.0-dev.20260226.1",

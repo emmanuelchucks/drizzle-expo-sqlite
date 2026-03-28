@@ -1,4 +1,5 @@
 import type { AndroidSymbol, SFSymbol } from "expo-symbols";
+import type { ReactElement } from "react";
 import { SymbolView } from "expo-symbols";
 import { styled } from "nativewind";
 
@@ -33,6 +34,6 @@ export function AppIcon({
   name: IconName;
   size?: number;
   className?: string;
-}) {
+}): ReactElement {
   return <StyledSymbolView name={symbolMap[name]} size={size} className={className} />;
 }
